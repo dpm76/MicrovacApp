@@ -1,0 +1,27 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 10
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.dpm.microvacapp"
+        minSdkVersion 10
+        targetSdkVersion 10
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    implementation project(':framework')
+    // Set this dependency to use JUnit 4 rules
+    // Set this dependency to build and run Espresso tests
+    // Set this dependency to build and run UI Automator tests
+}

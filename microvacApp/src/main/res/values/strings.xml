@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MicrovacApp</string>
+    <string name="go_forwards_text">^</string>
+    <string name="go_backwards_text">v</string>
+    <string name="left_text">&lt;</string>
+    <string name="stop_text">O</string>
+    <string name="right_text">&gt;</string>
+    <string name="ip_edit_text_hint">IP Address</string>
+    <string name="connect_toggle_on">ON</string>
+    <string name="connect_toggle_off">OFF</string>
+</resources>
