@@ -102,5 +102,9 @@ public class RobotCommander {
         send("STP");
     }
 
+    public void sendExpression(int expressionId){
+        send(String.format("EXP:%d", expressionId));
+    }
+
     public boolean isBound() { return _isBound; }
 }

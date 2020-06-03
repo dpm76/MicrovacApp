@@ -4,18 +4,6 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/ic_launcher"
-        android:paddingLeft="10dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="25dp"
-        android:text="@string/app_name"
-        android:textSize="36sp"
-        android:textStyle="bold"></TextView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +45,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onButtonForwardsClick"
+            android:onClick="onForwardsButtonClick"
             android:text="@string/go_forwards_text" />
 
         <View
@@ -78,7 +66,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onButtonLeftClick"
+            android:onClick="onLeftButtonClick"
             android:text="@string/left_text" />
 
         <Button
@@ -86,7 +74,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onButtonStopClick"
+            android:onClick="onStopButtonClick"
             android:text="@string/stop_text" />
 
         <Button
@@ -94,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onButtonRightClick"
+            android:onClick="onRightButtonClick"
             android:text="@string/right_text" />
     </LinearLayout>
 
@@ -114,7 +102,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:onClick="onButtonBackwardsClick"
+            android:onClick="onBackwardsButtonClick"
             android:text="@string/go_backwards_text" />
 
         <View
@@ -124,5 +112,62 @@
             android:layout_weight="1" />
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/expression0_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onExpression0ButtonClick"
+            android:text="@string/expression1_text" />
+
+        <Button
+            android:id="@+id/expression1_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onExpression1ButtonClick"
+            android:text="@string/expression2_text" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/expression2_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onExpression2ButtonClick"
+            android:text="@string/expression3_text" />
+
+        <Button
+            android:id="@+id/expression3_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="onExpression3ButtonClick"
+            android:text="@string/expression4_text" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/ic_launcher"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="25dp"
+        android:text="@string/app_name"
+        android:textSize="36sp"
+        android:textStyle="bold"></TextView>
 
 </LinearLayout>

@@ -9,4 +9,8 @@
     <string name="ip_edit_text_hint">IP Address</string>
     <string name="connect_toggle_on">ON</string>
     <string name="connect_toggle_off">OFF</string>
+    <string name="expression1_text">A</string>
+    <string name="expression2_text">B</string>
+    <string name="expression3_text">X</string>
+    <string name="expression4_text">Y</string>
 </resources>

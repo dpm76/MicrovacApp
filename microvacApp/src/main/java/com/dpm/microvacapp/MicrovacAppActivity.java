@@ -172,27 +172,27 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         }
     }
 
-    public void onButtonForwardsClick(View view)
+    public void onForwardsButtonClick(View view)
     {
         _sendForwards();
     }
 
-    public void onButtonBackwardsClick(View view)
+    public void onBackwardsButtonClick(View view)
     {
         _sendBackwards();
     }
 
-    public void onButtonStopClick(View view)
+    public void onStopButtonClick(View view)
     {
         _sendStop();
     }
 
-    public void onButtonRightClick(View view)
+    public void onRightButtonClick(View view)
     {
         _sendTurnRight();
     }
 
-    public void onButtonLeftClick(View view)
+    public void onLeftButtonClick(View view)
     {
         _sendTurnLeft();
     }
@@ -204,12 +204,30 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         {
             _tryConnect();
             //TODO: In case of the connection is not possible, the toggle button must be shown as off.
+            ((TextView)findViewById(R.id.ipEditText)).setEnabled(false);
 
         }else
         {
             Log.d(LOG_TAG, "Closing connection.");
             _disconnect();
+            ((TextView)findViewById(R.id.ipEditText)).setEnabled(true);
         }
+    }
+
+    public void onExpression0ButtonClick(View view){
+        _robotCommander.sendExpression(0);
+    }
+
+    public void onExpression1ButtonClick(View view){
+        _robotCommander.sendExpression(1);
+    }
+
+    public void onExpression2ButtonClick(View view){
+        _robotCommander.sendExpression(2);
+    }
+
+    public void onExpression3ButtonClick(View view){
+        _robotCommander.sendExpression(3);
     }
 
     @Override
