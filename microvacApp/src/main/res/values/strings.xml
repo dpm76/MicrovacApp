@@ -13,4 +13,5 @@
     <string name="expression2_text">B</string>
     <string name="expression3_text">X</string>
     <string name="expression4_text">Y</string>
+    <string name="gesture_driven_checkbox_text">Gesture driven</string>
 </resources>

@@ -9,6 +9,7 @@ import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -38,6 +39,8 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
     private final static double TRIGGER_ANGLE = Math.toRadians(45);
     private final static double STOP_ANGLE = Math.toRadians(30);
 
+    private View[] _driveButtons;
+
 
     /** Called when the activity is first created. */
     @Override
@@ -54,6 +57,10 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         if(_sensor == null){
             Log.i(LOG_TAG, "No sensor found.");
             Toast.makeText(this, "No sensor", Toast.LENGTH_SHORT).show();
+
+            CheckBox checkBox = (CheckBox)findViewById(R.id.gestureDrivenCheckBox);
+            checkBox.setVisibility(View.INVISIBLE);
+            checkBox.setChecked(false);
         }
 
         _robotCommander = new RobotCommander();
@@ -65,6 +72,45 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         }else {
             ipEditText.setText(getPreferences(MODE_PRIVATE).getString(KEY_ADDRESS, ""));
         }
+
+        _driveButtons = new View[]{
+                findViewById(R.id.go_forwards_button), 
+                findViewById(R.id.go_backwards_button),
+                findViewById(R.id.left_button),
+                findViewById(R.id.right_button),
+                findViewById(R.id.stop_button)
+        };
+    }
+
+    private void _hideDriveButtons(){
+
+        for (View button: _driveButtons) {
+            button.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void _showDriveButtons(){
+
+        for (View button: _driveButtons) {
+            button.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void _startGestureDriverIfExists(){
+
+        if(_sensor != null) {
+            _hideDriveButtons();
+            _sensorManager.registerListener(this, _sensor, SensorManager.SENSOR_DELAY_UI);
+        }
+    }
+
+    private void _stopGestureDriverIfExists(){
+
+        if(_sensor != null){
+            _sensorManager.unregisterListener(this, _sensor);
+        }
+
+        _showDriveButtons();
     }
 
     private void _tryConnect(){
@@ -74,9 +120,8 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         ToggleButton toggleButton = (ToggleButton)findViewById(R.id.connect_toggle);
         if(!address.isEmpty() && toggleButton.isChecked()){
             _robotCommander.connect(address, DEFAULT_PORT);
-            if(_sensor != null) {
-                _sensorManager
-                        .registerListener(this, _sensor, SensorManager.SENSOR_DELAY_UI);
+            if(((CheckBox)findViewById(R.id.gestureDrivenCheckBox)).isChecked()) {
+                _startGestureDriverIfExists();
             }
         }else {
             toggleButton.setChecked(false);
@@ -85,9 +130,7 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
 
     private void _disconnect(){
 
-        if(_sensor != null){
-            _sensorManager.unregisterListener(this, _sensor);
-        }
+        _stopGestureDriverIfExists();
         _robotCommander.close();
     }
 
@@ -204,13 +247,13 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
         {
             _tryConnect();
             //TODO: In case of the connection is not possible, the toggle button must be shown as off.
-            ((TextView)findViewById(R.id.ipEditText)).setEnabled(false);
+            findViewById(R.id.ipEditText).setEnabled(false);
 
         }else
         {
             Log.d(LOG_TAG, "Closing connection.");
             _disconnect();
-            ((TextView)findViewById(R.id.ipEditText)).setEnabled(true);
+            findViewById(R.id.ipEditText).setEnabled(true);
         }
     }
 
@@ -228,6 +271,16 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
 
     public void onExpression3ButtonClick(View view){
         _robotCommander.sendExpression(3);
+    }
+
+    public void onGestureDrivenCheckBoxClick(View view){
+
+        if(((CheckBox)view).isChecked()) {
+            _startGestureDriverIfExists();
+        }else
+        {
+            _stopGestureDriverIfExists();
+        }
     }
 
     @Override
