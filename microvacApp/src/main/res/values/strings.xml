@@ -14,4 +14,6 @@
     <string name="expression3_text">X</string>
     <string name="expression4_text">Y</string>
     <string name="gesture_driven_checkbox_text">Gesture driven</string>
+    <string name="main_menu_about_text">About</string>
+    <string name="copyright">© David Pérez Marinas, 2020</string>
 </resources>

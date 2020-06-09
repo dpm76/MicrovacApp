@@ -2,12 +2,15 @@ package com.dpm.microvacapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -311,5 +314,26 @@ public class MicrovacAppActivity extends Activity implements SensorEventListener
     public void onAccuracyChanged(Sensor sensor, int i)
     {
         //Nothing to do
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+
+        if (item.getItemId() == R.id.main_menu_about) {
+            startActivity(new Intent(this, AboutActivity.class));
+        }else
+        {
+                return super.onOptionsItemSelected(item);
+        }
+
+        return true;
     }
 }
